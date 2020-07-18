@@ -22,19 +22,19 @@ module TrailFinder
         attr_accessor :id, :name, :city, :region, :country, :length, :difficulty, :rating, :url, :features, :thumbnail, :description
         
         def initialize(attributes={})
-            @name = attributes["name"]
-            @id = attributes["id"]
-            @city = attributes["city"]
-            @region = attributes["region"]
-            @country = attributes["country"]
-            @length = attributes["length"]
-            @difficulty = attributes["difficulty"]
-            @rating = attributes["rating"]
-            @url = attributes["url"]
-            @description = attributes["description"]
-            @directions = attributes["directions"]
-            @features = attributes["features"]
-            @thumbnail = attributes["thumbnail"]
+           @name = attributes["name"]
+           @id = attributes["id"]
+           @city = attributes["city"]
+           @region = attributes["region"]
+           @country = attributes["country"]
+           @length = attributes["length"]
+           @difficulty = attributes["difficulty"]
+           @rating = attributes["rating"]
+           @url = attributes["url"]
+           @description = attributes["description"]
+           @directions = attributes["directions"]
+           @features = attributes["features"]
+           @thumbnail = attributes["thumbnail"]
         end 
 
         def trail_information

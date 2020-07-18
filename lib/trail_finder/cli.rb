@@ -3,7 +3,29 @@ module TrailFinder
 
         def start
             puts "Welcome to TrailFinder!"
-            set_location
+            while @user_input != "exit" 
+                set_location
+                trail_navigator 
+            end
+            goodbye 
+        end
+
+        def set_location
+            puts "To find trails near you, we need the latitude and longitude of your location."
+            puts "If you don't know your latitude and longitude, you can search by location here: https://latlong.net."
+            puts "Please enter your latitude (degrees north and degrees east should be positive values; degrees south and degrees west should be negative values):"
+            latitude = gets.strip
+            puts "Please enter your longitude (degrees north and degrees east should be positive values; degrees south and degrees west should be negative values):"
+            longitude = gets.strip
+            begin
+                Trail.load_by_location(latitude, longitude) unless latitude == "exit" || longitude == "exit"
+            rescue 
+                puts "I don't understand. Try again!"
+                set_location
+            end 
+        end
+        
+        def trail_navigator 
             list_trails
             ask_for_choice
             while @user_input != "exit" && @user_input != "new location"
@@ -16,27 +38,8 @@ module TrailFinder
                 end
                 ask_for_choice
             end
-            if @user_input == "new location"
-                set_location
-            end
-            goodbye
         end
-
-        def set_location
-            puts "To find trails near you, we need the latitude and longitude of your location."
-            puts "If you don't know your latitude and longitude, you can search by location here: https://latlong.net."
-            puts "Please enter your latitude (degrees north and degrees east should be positive values; degrees south and degrees west should be negative values):"
-            @latitude = gets.strip
-            puts "Please enter your longitude (degrees north and degrees east should be positive values; degrees south and degrees west should be negative values):"
-            @longitude = gets.strip
-            begin
-                Trail.load_by_location(@latitude, @longitude)
-            rescue 
-                puts "I don't understand. Try again!"
-                set_location
-            end 
-        end
-        
+ 
         def list_trails
             puts "Here is a list of mountain biking trails near you."
             Trail.all.each.with_index(1) do |trail, index|
@@ -46,7 +49,7 @@ module TrailFinder
         
         def ask_for_choice
             choices
-            @user_input = gets.strip
+            @user_input = gets.strip.downcase
         end
 
         def choices

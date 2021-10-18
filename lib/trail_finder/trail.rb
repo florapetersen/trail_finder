@@ -8,12 +8,12 @@ module TrailFinder
             @@all 
         end
         
-        def self.load_by_location(latitude, longitude)
+        def self.load_by_location(latitude, longitude) 
             trails_by_location = API.trail_search(latitude, longitude)
             @@all = self.create_from_search(trails_by_location)
         end 
 
-        def self.create_from_search(trails_from_search)
+        def self.create_from_search(trails_from_search) 
             trails_from_search.collect do |trail_hash|
                 self.new(trail_hash) 
             end
@@ -21,7 +21,7 @@ module TrailFinder
         
         attr_accessor :id, :name, :city, :region, :country, :length, :difficulty, :rating, :url, :features, :thumbnail, :description
         
-        def initialize(attributes={})
+        def initialize(attributes={}) 
            @name = attributes["name"]
            @id = attributes["id"]
            @city = attributes["city"]

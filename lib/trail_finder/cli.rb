@@ -1,7 +1,7 @@
 module TrailFinder
     class CLI
 
-        def start
+        def start 
             puts "Welcome to TrailFinder!"
             while @user_input != "exit" 
                 set_location
@@ -10,7 +10,7 @@ module TrailFinder
             goodbye 
         end
 
-        def set_location
+        def set_location 
             puts "To find trails near you, we need the latitude and longitude of your location."
             puts "If you don't know your latitude and longitude, you can search by location here: https://latlong.net."
             puts "Please enter your latitude (degrees north and degrees east should be positive values; degrees south and degrees west should be negative values):"
@@ -18,7 +18,7 @@ module TrailFinder
             puts "Please enter your longitude (degrees north and degrees east should be positive values; degrees south and degrees west should be negative values):"
             longitude = gets.strip
             begin
-                Trail.load_by_location(latitude, longitude) unless latitude == "exit" || longitude == "exit"
+                Trail.load_by_location(latitude, longitude)
             rescue 
                 puts "I don't understand. Try again!"
                 set_location
@@ -64,7 +64,7 @@ module TrailFinder
         end
 
         def goodbye
-            puts "Happy trails!"
+            puts "Happy trails!" 
         end
     end
 end
